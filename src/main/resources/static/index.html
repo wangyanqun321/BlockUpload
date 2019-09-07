@@ -32,7 +32,7 @@
         chunked : true, // 分片处理
         chunkSize : 32 * 1024 * 1024, // 每片32M,
         chunkRetry : false,// 如果失败，则不重试
-        threads : 1,// 上传并发数。允许同时最大上传进程数。
+        threads : 5,// 上传并发数。允许同时最大上传进程数。
         // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
         resize: false
     });

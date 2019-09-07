@@ -5,7 +5,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,7 +20,7 @@ public class UploadController {
     @Value("${uploadFolder}")
     private String filePath;
 
-    private  final String MODEL="upload";
+    private final String MODEL="upload";
     /**
      * 上传文件
      * @param request
@@ -30,7 +30,7 @@ public class UploadController {
      * @param file
      * @param chunks
      */
-    @RequestMapping( MODEL+ "/upload")
+    @PostMapping(MODEL+ "/upload")
     public void bigFile(HttpServletRequest request, HttpServletResponse response, String guid, Integer chunk, MultipartFile file, Integer chunks){
         if(chunk == null || chunks == null){
             chunk = 0;
@@ -66,8 +66,8 @@ public class UploadController {
      * @param fileName
      * @throws Exception
      */
-    @RequestMapping( MODEL+"/merge")
     @ResponseBody
+    @PostMapping(MODEL+"/merge")
     public JsonResult mergeFile(String guid, String fileName){
         // 得到 destTempFile 就是最终的文件
         try {
